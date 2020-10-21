@@ -1,0 +1,63 @@
+@import '../assets/styles/graphic-charter';
+
+$icon: 'icon';
+$input: 'input';
+$label: 'label';
+$table: 'table';
+
+.#{$icon} {
+  width: 33px;
+}
+
+.#{$input} {
+  padding: 7px;
+  &[type=number] {
+    -moz-appearance: textfield;
+  }
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &:focus {
+    border: none;
+    box-shadow: none;
+  }
+  &_disabled{
+    pointer-events: none;
+  }
+  &-group-container {
+    height: fit-content;
+  }
+}
+
+.#{$label} {
+  padding: 7px;
+  color: $gray;
+  &_reactive {
+    color: $yellow-base;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__info {
+    font-style: italic;
+    font-size: 14px;
+    &_warning {
+      color: $orange;
+    }
+  }
+}
+
+.#{$table} {
+  th {
+    font-weight: bold;
+    color: $yellow-dark;
+  }
+  td {
+    color: $gray;
+  }
+}
+
+

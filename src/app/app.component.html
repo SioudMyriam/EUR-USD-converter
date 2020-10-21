@@ -1,20 +1,68 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
-
+<main class="main">
+  <section class="container-fluid col-md-10 mb-5 text-center">
+    <h3 class="main_title">Convertisseur Euro / Dollar</h3>
+  </section>
+  <section class="container-fluid col-md-10 mb-3">
+    <span class="label">USD</span>
+    <mat-slide-toggle checked (change)="onConverterChange($event)"></mat-slide-toggle>
+    <span class="label">EUR</span>
+  </section>
+  <section class="container-fluid col-md-10 justify-content-center mb-3">
+    <div class="row justify-content-center">
+      <div class="col-5">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">{{entredCurrency.symbole}}</span>
+          </div>
+          <input type="number" class="input form-control" [(ngModel)]="entredCurrency.value"
+            placeholder="{{entredCurrency.placeholder}}" (input)="updateConversion()">
+        </div>
+        <span class="label_reactive" (click)="getConversionHistory()">Enregistrer ma conversion</span>
+      </div>
+      <div class="col-2 text-center">
+        <img class="icon" alt="convert" src="../assets/icons/right-arrow.svg">
+      </div>
+      <div class="col-5 input-group">
+        <div class="input-group-container input-group-prepend">
+          <span class="input-group-text">{{convertedCurrency.symbole}}</span>
+        </div>
+        <input type="number" class="input input_disabled form-control" [(ngModel)]="convertedCurrency.value"
+          placeholder="{{convertedCurrency.placeholder}}">
+      </div>
+    </div>
+  </section>
+  <section class="container-fluid col-md-10 mb-3">
+    <p class="label mb-0">Taux de change: {{conversionRate}}</p>
+    <div class="section-container">
+      <mat-checkbox [(ngModel)]="fixConversionRate" (change)="updateFixedConvirsionRate()">
+        Fixer un taux de change
+        <span *ngIf="fixConversionRate" class="label label__info px-0"
+          [ngClass]="{'label__info_warning': fixConversionRate && autoConversionRate}">
+          (Le taux de change saisi ne sera pas appliqué s'il présente un écart
+          supèrieur à 2% avec le taux réel)</span>
+      </mat-checkbox>
+      <div *ngIf="fixConversionRate">
+        <input class="input form-control w-auto" type="number" placeholder="Taux fixe"
+          [(ngModel)]="entredConversionRate">
+        <span class="label_reactive" (click)="applyFixedRate()">Appliquer le taux fixe</span>
+      </div>
+    </div>
+  </section>
+  <section class="container-fluid col-md-10">
+    <h5 class="section__title">Historique</h5>
+    <table class="table">
+      <tr>
+        <th>Taux réel</th>
+        <th>Taux saisi</th>
+        <th>Valeur initiale</th>
+        <th>Valeur calculée</th>
+      </tr>
+      <tr *ngFor="let item of historicValues">
+        <td>{{item.convertionRate}}</td>
+        <td>{{item.entredConvertionRate}}</td>
+        <td>{{item.entredCurrency}}</td>
+        <td>{{item.convertedCurrency}}</td>
+      </tr>
+    </table>
+  </section>
+</main>

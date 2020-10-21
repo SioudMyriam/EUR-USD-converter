@@ -1,0 +1,55 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '../styles/graphic-charter';
+
+$main: 'main';
+$section: 'section';
+
+.#{$main} {
+  min-height: 100vh;
+  background: $blue;
+  padding-top: 100px;
+  &_title {
+    color: $gray
+  }
+}
+
+.#{$section} {
+  &-container {
+    padding: 7px;
+  }
+  &__title {
+    color: $yellow-base;
+    padding: 7px;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+  background: $yellow-dark;
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background: $yellow-base;
+}
+.mat-slide-toggle-thumb {
+  background: $yellow-dark;
+}
+.mat-slide-toggle-bar {
+  background: $yellow-base;
+}
+.mat-slide-toggle.mat-checked .mat-ripple-element,
+.mat-slide-toggle:not(.mat-checked) .mat-ripple-element
+{
+  background: none;
+}
+.mat-checkbox-label {
+  color: $gray;
+}
+.mat-checkbox-frame {
+  border-color: $yellow-dark
+}
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background: $yellow-base;
+}
