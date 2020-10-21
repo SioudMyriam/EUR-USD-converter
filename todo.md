@@ -7,3 +7,4 @@ Les améliorations à faires:
 5/ Rendre le tableau affiché générique qui pourra être utilisé ailleurs dans l'application
 6/ Faire la partie responsive
 7/ Minimiser les variables utilisées
+8/ Vérifier / adapter l'application pour les différents types de navigateurs
